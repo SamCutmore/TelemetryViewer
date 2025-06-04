@@ -23,5 +23,5 @@ struct Event {
     const EventPayload payload;
 
     explicit Event(EventType t, EventPayload p) : type(t), payload(std::move(p)) {}
-
+    
 };

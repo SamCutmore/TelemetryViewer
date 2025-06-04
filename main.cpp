@@ -15,11 +15,6 @@ int main() {
         viewer.onTelemetry(p);
     });
 
-    bus.subscribe(EventType::TelemetryReceived, [](const EventPayload& p) { 
-    // should fail to compile 
-    });
-
-
     bus.subscribe(EventType::UserCommand, [](const EventPayload& p) {
         const auto& cmd = std::get<UserCommand>(p);
         std::cout << "[Command] Executing: " << cmd.command << "\n";

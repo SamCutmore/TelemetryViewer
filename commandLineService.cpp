@@ -17,10 +17,10 @@ void CLIService::run() {
         }
         
         if (line == "quit" || line == "exit") {
-            queue_.push({EventType::Quit, {}});
+            queue_.push(Event{EventType::Quit, {}});
             break;
         }
 
-        queue_.push({EventType::UserCommand, UserCommand{line}});
+        queue_.push(Event{EventType::UserCommand, UserCommand{line}});
     }
 }

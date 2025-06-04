@@ -5,7 +5,7 @@ class ViewerService {
 public:
     ViewerService();
     void onTelemetry(const EventPayload& payload);
-    void update();  // Called from a loop
+    void update();
     bool shouldClose() const;
 
 private:
