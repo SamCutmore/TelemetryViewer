@@ -11,10 +11,17 @@ int main() {
     EventBus bus;
     ViewerService viewer;
 
-    std::thread input_thread([&]() {
-        queue.push({EventType::TelemetryReceived, TelemetryData{51.5, -0.1, 100}});
-        queue.push({EventType::UserCommand, UserCommand{"ARM"}});
-        queue.push({EventType::Quit, {}});
+    bus.subscribe(EventType::TelemetryReceived, [&](const EventPayload& p) {
+        viewer.onTelemetry(p);
+    });
+
+    bus.subscribe(EventType::UserCommand, [](const EventPayload& p) {
+        const auto& cmd = std::get<UserCommand>(p);
+        std::cout << "[Command] Executing: " << cmd.command << "\n";
+    });
+
+    bus.subscribe(EventType::Quit, [&](const EventPayload&) {
+        std::cout << "[System] Quit signal received\n";
     });
 
     CLIService cli(queue);
@@ -25,8 +32,7 @@ int main() {
     std::thread event_loop_thread([&]() {
         run_event_loop(queue, bus);
     });
-
-    input_thread.join();
+    
     cli_thread.join();
     event_loop_thread.join();
 

@@ -10,13 +10,15 @@ void CLIService::run() {
         if (!std::getline(std::cin, line)) {
             break;
         }
-        
 
+        if(line == "push telemetry") {
+            TelemetryData data{51.5, -0.1, 100};
+            queue_.push(Event{EventType::TelemetryReceived, EventPayload{data}});
+        }
+        
         if (line == "quit" || line == "exit") {
             queue_.push({EventType::Quit, {}});
             break;
-        } else {
-            queue_.push({EventType::TelemetryReceived, TelemetryData{51.5, -0.1, 100}});
         }
 
         queue_.push({EventType::UserCommand, UserCommand{line}});
