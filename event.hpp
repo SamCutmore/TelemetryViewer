@@ -16,10 +16,12 @@ struct UserCommand {
     std::string command;
 };
 
-// Expand this union as the system grows.
 using EventPayload = std::variant<std::monostate, TelemetryData, UserCommand>;
 
 struct Event {
-    EventType type;
-    EventPayload payload;
+    const EventType type;
+    const EventPayload payload;
+
+    explicit Event(EventType t, EventPayload p) : type(t), payload(std::move(p)) {}
+
 };

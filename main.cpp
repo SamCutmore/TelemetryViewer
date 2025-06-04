@@ -15,6 +15,11 @@ int main() {
         viewer.onTelemetry(p);
     });
 
+    bus.subscribe(EventType::TelemetryReceived, [](const EventPayload& p) { 
+    // should fail to compile 
+    });
+
+
     bus.subscribe(EventType::UserCommand, [](const EventPayload& p) {
         const auto& cmd = std::get<UserCommand>(p);
         std::cout << "[Command] Executing: " << cmd.command << "\n";
@@ -32,7 +37,7 @@ int main() {
     std::thread event_loop_thread([&]() {
         run_event_loop(queue, bus);
     });
-    
+
     cli_thread.join();
     event_loop_thread.join();
 

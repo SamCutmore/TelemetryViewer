@@ -1,7 +1,6 @@
 #pragma once
 #include "eventQueue.hpp"
 #include "eventBus.hpp"
-#include <iostream>
 
 void run_event_loop(EventQueue& queue, const EventBus& bus) {
     while (true) {
