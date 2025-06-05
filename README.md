@@ -1,4 +1,4 @@
-# UART Telemetry Transport and Visualization
+# UART Telemetry Visualization
 
 [![Status](https://img.shields.io/badge/status-WIP-orange)](https://github.com/SamCutmore/TelemetryViewer/)
 
@@ -6,12 +6,13 @@
 
 This project implements a UART transport layer for streaming telemetry data over serial communication. It serves as a testbed for developing and refining skills in:
 
-- Serial port configuration and management (POSIX termios)
+- Serial port configuration and management
+- Event driven sub/pub architecture for modular services
 - UART data reading and framing
 - Protocol layering
 - Real-time telemetry visualization (planned with OpenGL)
 
-The current implementation supports basic UART communication and frame parsing. Visualization is in progress.
+The current implementation supports basic UART communication and frame parsing.
 
 ## Features
 
@@ -21,5 +22,8 @@ The current implementation supports basic UART communication and frame parsing. 
 
 ## Status
 
-- Core UART transport is functional but may lose data at high baud rates  
-- Visualization layer planned for the future  
+- Core UART transport is functional
+- Protocol parsing planned
+- Telemetry Visualization layer planned
+- Optimisation and experimentation with concurrency and prioritisation queues of events
+- GUI interface
