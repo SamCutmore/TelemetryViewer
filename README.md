@@ -4,7 +4,7 @@
 
 ## Overview
 
-This project implements a UART transport layer for streaming telemetry data over serial communication. It serves as a testbed for developing and refining skills in:
+This project implements a UART datalink layer for streaming telemetry data over serial communication. It serves as a testbed for developing and refining skills in:
 
 - Serial port configuration and management
 - Event driven sub/pub architecture for modular services
@@ -22,7 +22,7 @@ The current implementation supports basic UART communication and frame parsing.
 
 ## Status
 
-- Core UART transport is functional
+- Core UART datalink is functional
 - Protocol parsing planned
 - Telemetry Visualization layer planned
 - Optimisation and experimentation with concurrency and prioritisation queues of events
