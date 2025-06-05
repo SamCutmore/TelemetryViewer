@@ -26,4 +26,4 @@ The current implementation supports basic UART communication and frame parsing.
 - Protocol parsing planned
 - Telemetry Visualization layer planned
 - Optimisation and experimentation with concurrency and prioritisation queues of events
-- GUI interface
+- GUI interface planned
