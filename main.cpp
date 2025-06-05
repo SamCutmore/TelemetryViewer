@@ -12,13 +12,16 @@ int main() {
     EventBus bus;
     ViewerService viewer;
     TransportServiceUART transport("/dev/pts/4", 9600);
+    bool started = false;
 
     bus.subscribe(EventType::TelemetryReceived, [&](const EventPayload& p) {
         viewer.onTelemetry(p);
     });
 
     bus.subscribe(EventType::UserCommand, [&](const EventPayload& p) {
-        transport.start(queue);
+        if (!started) {
+            transport.start(queue);
+        }
     });
 
     bus.subscribe(EventType::Quit, [&](const EventPayload&) {

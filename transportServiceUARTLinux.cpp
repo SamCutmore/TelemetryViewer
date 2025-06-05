@@ -2,10 +2,10 @@
 #include <termios.h>
 #include <stdint.h>
 #include <stdexcept>
-#include <iostream>    // std::cout, std::endl
-#include <thread>      // std::thread
-#include <cctype>      // std::isprint
-#include <unistd.h>    // close(), read()
+#include <iostream>
+#include <thread> 
+#include <cctype>
+#include <unistd.h> 
 #include "transportService.hpp"
 #include "eventQueue.hpp"
 
