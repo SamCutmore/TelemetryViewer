@@ -3,6 +3,7 @@
 #include "eventLoop.hpp"
 #include "viewerService.hpp"
 #include "commandLineService.hpp"
+#include "transportServiceUARTLinux.cpp"
 #include <thread>
 #include <iostream>
 
@@ -10,14 +11,14 @@ int main() {
     EventQueue queue;
     EventBus bus;
     ViewerService viewer;
+    TransportServiceUART transport("/dev/pts/4", 9600);
 
     bus.subscribe(EventType::TelemetryReceived, [&](const EventPayload& p) {
         viewer.onTelemetry(p);
     });
 
-    bus.subscribe(EventType::UserCommand, [](const EventPayload& p) {
-        const auto& cmd = std::get<UserCommand>(p);
-        std::cout << "[Command] Executing: " << cmd.command << "\n";
+    bus.subscribe(EventType::UserCommand, [&](const EventPayload& p) {
+        transport.start(queue);
     });
 
     bus.subscribe(EventType::Quit, [&](const EventPayload&) {
